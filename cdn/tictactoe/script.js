@@ -80,7 +80,7 @@ function aiMove() {
   if (aiDifficulty === 'hard') {
     chosenMove = bestMove('O'); // Strong AI
   } else if (aiDifficulty === 'medium') {
-    if (Math.random() > 0.3) { 
+    if (Math.random() > 0.1) { 
       // 70% সময় strong AI, 30% random
       chosenMove = bestMove('O');
     } else {
