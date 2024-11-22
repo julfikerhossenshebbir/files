@@ -77,10 +77,15 @@ function aiMove() {
   let availableMoves = gameBoard.map((val, idx) => (val === null ? idx : null)).filter(idx => idx !== null);
 
   let chosenMove;
+
   if (aiDifficulty === 'hard') {
     chosenMove = bestMove('O'); // Strong AI
-  } else if (aiDifficulty === 'medium' && Math.random() > 0.5) {
-    chosenMove = bestMove('O'); // Sometimes strong, sometimes random
+  } else if (aiDifficulty === 'medium') {
+    chosenMove = blockPlayerMove(); // Block player if possible
+    if (chosenMove === null) {
+      // If no blocking move is needed, make a random move
+      chosenMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    }
   } else {
     chosenMove = availableMoves[Math.floor(Math.random() * availableMoves.length)]; // Random AI
   }
@@ -104,7 +109,9 @@ function aiMove() {
   }
 }
 
-function checkWinner() {
+// Function to block the player if they're about to win
+function blockPlayerMove() {
+  let blockingMove = null;
   const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -116,11 +123,20 @@ function checkWinner() {
     [2, 4, 6],
   ];
 
-  return winningCombinations.some(combination => {
+  // Check for a potential winning move from player (X) and block it
+  for (let combination of winningCombinations) {
     const [a, b, c] = combination;
-    return gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c];
-  });
-}
+    const cells = [gameBoard[a], gameBoard[b], gameBoard[c]];
+
+    if (cells.filter(cell => cell === 'X').length === 2 && cells.includes(null)) {
+      // Find the index of the empty cell and block it
+      blockingMove = combination.find(idx => gameBoard[idx] === null);
+      break;
+    }
+  }
+
+  return blockingMove;
+    }
 
 function bestMove(player) {
   let bestScore = -Infinity;
