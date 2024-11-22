@@ -1,3 +1,14 @@
+const resetGameBtn = document.getElementById('resetGameBtn');
+
+resetGameBtn.addEventListener('click', () => {
+  resetGame();
+  if (isSinglePlayer) {
+    statusDisplay.textContent = `Player X's turn (vs AI)`;
+  } else {
+    statusDisplay.textContent = `Player X's turn`;
+  }
+});
+
 // DOM Elements
 const menu = document.getElementById('menu');
 const singlePlayerBtn = document.getElementById('singlePlayer');
