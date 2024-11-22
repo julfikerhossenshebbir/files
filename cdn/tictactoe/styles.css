@@ -41,6 +41,18 @@ button {
   width: 220px;
 }
 
+button svg {
+  width: 20px;
+  height: 20px;
+  fill: white; /* Icon color */
+  margin-right: 10px 0; /* Spacing between icon and text */
+  transition: transform 0.2s ease;
+}
+
+button:hover svg {
+  transform: scale(1.2); /* Slight zoom on hover */
+}
+
 button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
