@@ -1,3 +1,25 @@
+.reset-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin: 20px auto 0; /* Top margin and center alignment */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: block;
+  width: 220px;
+  text-align: center;
+}
+
+.reset-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Base Reset */
 body {
   font-family: 'Roboto', Arial, sans-serif;
@@ -39,18 +61,6 @@ button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   width: 220px;
-}
-
-button svg {
-  width: 20px;
-  height: 20px;
-  fill: white; /* Icon color */
-  margin-right: 10px 0; /* Spacing between icon and text */
-  transition: transform 0.2s ease;
-}
-
-button:hover svg {
-  transform: scale(1.2); /* Slight zoom on hover */
 }
 
 button:hover {
@@ -134,4 +144,4 @@ h1 {
     opacity: 1;
     transform: scale(1);
   }
-  }
+}
